@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/accordion'
 import { Course } from '@/payload-types'
 import { useRouter } from 'next/navigation'
+import PathNav from '@/components/courses/PathNav'
 
 export default function CourseDetailClient({ course }: { course: Course }) {
     const router = useRouter()
@@ -105,6 +106,16 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-none blur-[120px] -ml-40 -mb-40" />
             </section>
 
+            {/* Learning Path Navigation */}
+            {course.pathSteps && course.pathSteps.length > 0 && (
+                <div className="container-custom border-b border-border">
+                    <PathNav
+                        courseSlug={course.slug}
+                        pathSteps={course.pathSteps}
+                    />
+                </div>
+            )}
+
             {/* MainContent */}
             <div className="container-custom py-24 md:py-32">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
@@ -140,33 +151,98 @@ export default function CourseDetailClient({ course }: { course: Course }) {
                             </section>
                         )}
 
-                        {/* Curriculum */}
+                        {/* Curriculum / Learning Path Syllabus */}
                         <section className="space-y-12">
                             <h2 className="text-2xl md:text-4xl font-black text-foreground tracking-tighter uppercase">Operational Path</h2>
                             <Accordion type="single" collapsible className="w-full space-y-6">
-                                {course.curriculum && course.curriculum.map((module: any, i: number) => (
-                                    <AccordionItem
-                                        key={i}
-                                        value={`item-${i}`}
-                                        className="border border-border bg-card rounded-none overflow-hidden px-8 shadow-sm hover:border-primary/40 transition-all duration-500"
-                                    >
-                                        <AccordionTrigger className="hover:no-underline py-8 md:py-10 px-4 group">
-                                            <div className="flex items-center gap-6 text-left">
-                                                <div className="w-12 h-12 rounded-none bg-muted border border-border flex items-center justify-center text-primary text-lg font-black shrink-0 shadow-sm group-data-[state=open]:bg-primary group-data-[state=open]:text-white transition-all">
-                                                    {String(i + 1).padStart(2, '0')}
+                                {/* Prefer pathSteps with linked subjects */}
+                                {course.pathSteps && course.pathSteps.length > 0 ? (
+                                    course.pathSteps.map((step: any, i: number) => {
+                                        const subject = typeof step.subject === 'object' ? step.subject : null
+                                        const syllabus = subject?.syllabus || []
+
+                                        return (
+                                            <AccordionItem
+                                                key={step.id || i}
+                                                value={`step-${i}`}
+                                                className="border border-border bg-card rounded-none overflow-hidden px-8 shadow-sm hover:border-primary/40 transition-all duration-500"
+                                            >
+                                                <AccordionTrigger className="hover:no-underline py-8 md:py-10 px-4 group">
+                                                    <div className="flex items-center gap-6 text-left">
+                                                        <div className="w-12 h-12 rounded-none bg-muted border border-border flex items-center justify-center text-primary text-lg font-black shrink-0 shadow-sm group-data-[state=open]:bg-primary group-data-[state=open]:text-white transition-all">
+                                                            {String(i + 1).padStart(2, '0')}
+                                                        </div>
+                                                        <div>
+                                                            <span className="text-xl md:text-2xl font-black text-foreground uppercase tracking-tight group-data-[state=open]:text-primary transition-colors block">
+                                                                {step.stepName}
+                                                            </span>
+                                                            {subject?.description && (
+                                                                <span className="text-sm text-muted-foreground font-medium mt-1 block normal-case tracking-normal">
+                                                                    {subject.description}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </AccordionTrigger>
+                                                <AccordionContent className="px-6 pb-10 pt-0">
+                                                    <div className="pl-20 border-t border-border pt-8 space-y-4">
+                                                        {syllabus.length > 0 ? (
+                                                            syllabus.map((item: any, j: number) => (
+                                                                <div key={j} className="flex items-start gap-4 group/topic">
+                                                                    <CheckCircle size={16} className="text-primary mt-1 shrink-0" />
+                                                                    <div className="flex-1">
+                                                                        <p className="text-foreground font-bold text-base">
+                                                                            {item.topic}
+                                                                            {item.hours && (
+                                                                                <span className="ml-3 text-xs text-muted-foreground font-medium">
+                                                                                    {item.hours}h
+                                                                                </span>
+                                                                            )}
+                                                                        </p>
+                                                                        {item.description && (
+                                                                            <p className="text-muted-foreground text-sm mt-1 leading-relaxed opacity-80">
+                                                                                {item.description}
+                                                                            </p>
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                            ))
+                                                        ) : (
+                                                            <p className="text-muted-foreground text-lg opacity-80 leading-relaxed max-w-2xl">
+                                                                In-depth technical synchronization covering architecture, implementation protocols, and project-based validation for {step.stepName}.
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        )
+                                    })
+                                ) : (
+                                    /* Fallback to legacy curriculum array */
+                                    course.curriculum && course.curriculum.map((module: any, i: number) => (
+                                        <AccordionItem
+                                            key={i}
+                                            value={`item-${i}`}
+                                            className="border border-border bg-card rounded-none overflow-hidden px-8 shadow-sm hover:border-primary/40 transition-all duration-500"
+                                        >
+                                            <AccordionTrigger className="hover:no-underline py-8 md:py-10 px-4 group">
+                                                <div className="flex items-center gap-6 text-left">
+                                                    <div className="w-12 h-12 rounded-none bg-muted border border-border flex items-center justify-center text-primary text-lg font-black shrink-0 shadow-sm group-data-[state=open]:bg-primary group-data-[state=open]:text-white transition-all">
+                                                        {String(i + 1).padStart(2, '0')}
+                                                    </div>
+                                                    <span className="text-xl md:text-2xl font-black text-foreground uppercase tracking-tight group-data-[state=open]:text-primary transition-colors">
+                                                        {module.title}
+                                                    </span>
                                                 </div>
-                                                <span className="text-xl md:text-2xl font-black text-foreground uppercase tracking-tight group-data-[state=open]:text-primary transition-colors">
-                                                    {module.title}
-                                                </span>
-                                            </div>
-                                        </AccordionTrigger>
-                                        <AccordionContent className="px-6 pb-10 pt-0">
-                                            <div className="pl-20 text-muted-foreground text-lg opacity-80 leading-relaxed max-w-2xl border-t border-border pt-8">
-                                                <p>In-depth technical synchronization covering architecture, implementation protocols, and project-based validation for {module.title}.</p>
-                                            </div>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                ))}
+                                            </AccordionTrigger>
+                                            <AccordionContent className="px-6 pb-10 pt-0">
+                                                <div className="pl-20 text-muted-foreground text-lg opacity-80 leading-relaxed max-w-2xl border-t border-border pt-8">
+                                                    <p>In-depth technical synchronization covering architecture, implementation protocols, and project-based validation for {module.title}.</p>
+                                                </div>
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    ))
+                                )}
                             </Accordion>
                         </section>
 

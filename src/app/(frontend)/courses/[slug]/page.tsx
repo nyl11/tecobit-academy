@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CourseDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const course = await getCourseBySlug(slug)
+  const course = await getCourseBySlug(slug, { depth: 2 })
 
   if (!course) {
     notFound()

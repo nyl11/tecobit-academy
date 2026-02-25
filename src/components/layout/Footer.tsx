@@ -2,11 +2,67 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Facebook, Instagram, Linkedin, MessageCircle, Sparkles } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, MessageCircle, Twitter, Youtube, Hash, Sparkles } from 'lucide-react';
 import { Logo } from '@/components/admin/Branding';
+import type { SiteSetting } from '@/payload-types';
 
-export default function Footer() {
+interface FooterProps {
+    footerData: NonNullable<SiteSetting['footer']> | null | undefined;
+}
+
+const getSocialIcon = (platform: string) => {
+    switch (platform) {
+        case 'facebook': return <Facebook size={20} />;
+        case 'instagram': return <Instagram size={20} />;
+        case 'linkedin': return <Linkedin size={20} />;
+        case 'whatsapp': return <MessageCircle size={20} />;
+        case 'x': return <Twitter size={20} />;
+        case 'youtube': return <Youtube size={20} />;
+        case 'tiktok': return <Hash size={20} />;
+        default: return <Hash size={20} />;
+    }
+};
+
+export default function Footer({ footerData }: FooterProps) {
+    // Default fallbacks in case CMS data is missing
+    const address = footerData?.address || 'Pragatinagar Marga, Sankhamul-31, Kathmandu, Nepal';
+    const phone = footerData?.phone || '+977 974-5697694';
+    const email = footerData?.email || 'info@tecobit.cloud';
+    
+    // Default columns if none exist
+    const defaultColumns = [
+        {
+            id: '1',
+            heading: 'Operations',
+            links: [
+                { id: '1', label: 'Full-Stack Sync', url: '#', newTab: false },
+                { id: '2', label: 'Mobile Architecture', url: '#', newTab: false },
+                { id: '3', label: 'SEO Optimization', url: '#', newTab: false },
+            ]
+        },
+        {
+            id: '2',
+            heading: 'Enterprise',
+            links: [
+                { id: '1', label: 'Our Origin', url: '/about', newTab: false },
+                { id: '2', label: 'Contact Node', url: '/contact', newTab: false },
+            ]
+        }
+    ];
+    
+    const columns = (footerData?.columns && footerData.columns.length > 0) ? footerData.columns : defaultColumns;
+    
+    const defaultSocials = [
+        { id: '1', platform: 'facebook', url: '#' },
+        { id: '2', platform: 'instagram', url: '#' },
+        { id: '3', platform: 'linkedin', url: '#' },
+        { id: '4', platform: 'whatsapp', url: '#' },
+    ];
+    
+    const socialLinks = (footerData?.socialLinks && footerData.socialLinks.length > 0) ? footerData.socialLinks : defaultSocials;
+    
+    const copyrightText = footerData?.copyrightText || '© 2024 Tecobit Technology Pvt Ltd · System Integrated';
+
     return (
         <footer className="bg-muted/30 text-muted-foreground pt-24 pb-12 border-t border-border font-sans transition-colors duration-500 relative overflow-hidden">
             {/* Elite Background Accents */}
@@ -25,20 +81,20 @@ export default function Footer() {
                         <div className="space-y-6 text-sm leading-relaxed">
                             <div className="space-y-2">
                                 <h3 className="text-foreground font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                                    <Sparkles size={14} className="text-primary" />
-                                    Infrastructure Hub
+                                    
+                                    Tecobit Technology Pvt Ltd
                                 </h3>
                                 <p className="opacity-80">
-                                    Pragatinagar Marga, Sankhamul-31, Kathmandu, Nepal
+                                    {address}
                                 </p>
                             </div>
 
                             <div className="flex flex-col space-y-3 border-l-2 border-primary/20 pl-4">
                                 <p className="text-xs uppercase tracking-[0.1em] font-bold">
-                                    Uplink: <span className="text-foreground hover:text-primary transition-all cursor-pointer font-black">+977 974-5697694</span>
+                                    Phone no: <span className="text-foreground hover:text-primary transition-all cursor-pointer font-black">{phone}</span>
                                 </p>
                                 <p className="text-xs uppercase tracking-[0.1em] font-bold">
-                                    Signal: <span className="text-foreground hover:text-primary transition-all cursor-pointer font-black">info@tecobit.cloud</span>
+                                    Email: <span className="text-foreground hover:text-primary transition-all cursor-pointer font-black">{email}</span>
                                 </p>
                             </div>
                         </div>
@@ -49,73 +105,48 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Services Column */}
-                    <div className="space-y-8">
-                        <h4 className="text-foreground text-[10px] font-black uppercase tracking-[0.4em] opacity-50">Operations</h4>
-                        <ul className="space-y-4 text-sm font-bold">
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">Full-Stack Sync</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">Mobile Architecture</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">SEO Optimization</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">E-commerce Nodes</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">System Maintenance</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Company Column */}
-                    <div className="space-y-8">
-                        <h4 className="text-foreground text-[10px] font-black uppercase tracking-[0.4em] opacity-50">Enterprise</h4>
-                        <ul className="space-y-4 text-sm font-bold">
-                            <li><Link href="/about" className="hover:text-primary transition-all hover:translate-x-1 block">Our Origin</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">Core Portfolio</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">Asset Pricing</Link></li>
-                            <li><Link href="/contact" className="hover:text-primary transition-all hover:translate-x-1 block">Contact Node</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Support Column */}
-                    <div className="space-y-8">
-                        <h4 className="text-foreground text-[10px] font-black uppercase tracking-[0.4em] opacity-50">Uplink</h4>
-                        <ul className="space-y-4 text-sm font-bold">
-                            <li><Link href="/contact" className="hover:text-primary transition-all hover:translate-x-1 block">Technical Support</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">Direct WhatsApp</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">System Docs</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">Central FAQ</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Legal Column */}
-                    <div className="space-y-8">
-                        <h4 className="text-foreground text-[10px] font-black uppercase tracking-[0.4em] opacity-50">Compliance</h4>
-                        <ul className="space-y-4 text-sm font-bold">
-                            <li><Link href="/terms" className="hover:text-primary transition-all hover:translate-x-1 block">Service Terms</Link></li>
-                            <li><Link href="/privacy" className="hover:text-primary transition-all hover:translate-x-1 block">Data Protection</Link></li>
-                            <li><Link href="#" className="hover:text-primary transition-all hover:translate-x-1 block">Cookie Matrix</Link></li>
-                        </ul>
-                    </div>
+                    {/* Dynamic Link Columns */}
+                    {columns.map((col, idx) => (
+                        <div key={col.id || idx} className="space-y-8">
+                            <h4 className="text-foreground text-[10px] font-black uppercase tracking-[0.4em] opacity-50">
+                                {col.heading}
+                            </h4>
+                            <ul className="space-y-4 text-sm font-bold">
+                                {col.links?.map((link, linkIdx) => (
+                                    <li key={link.id || linkIdx}>
+                                        <Link 
+                                            href={link.url} 
+                                            target={link.newTab ? "_blank" : "_self"}
+                                            rel={link.newTab ? "noopener noreferrer" : undefined}
+                                            className="hover:text-primary transition-all hover:translate-x-1 block"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
 
                 {/* Bottom Bar */}
                 <div className="pt-12 border-t border-border flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
                     <p className="opacity-50">
-                        © 2024 Tecobit Technology Pvt Ltd · System Integrated
+                        {copyrightText}
                     </p>
                     <div className="flex items-center gap-4">
-                        <Link href="#" className="w-12 h-12 rounded-none bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all shadow-sm">
-                            <Facebook size={20} />
-                            <span className="sr-only">Facebook</span>
-                        </Link>
-                        <Link href="#" className="w-12 h-12 rounded-none bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all shadow-sm">
-                            <Instagram size={20} />
-                            <span className="sr-only">Instagram</span>
-                        </Link>
-                        <Link href="#" className="w-12 h-12 rounded-none bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all shadow-sm">
-                            <Linkedin size={20} />
-                            <span className="sr-only">LinkedIn</span>
-                        </Link>
-                        <Link href="#" className="w-12 h-12 rounded-none bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all shadow-sm">
-                            <MessageCircle size={20} />
-                            <span className="sr-only">WhatsApp</span>
-                        </Link>
+                        {socialLinks.map((social, idx) => (
+                            <Link 
+                                key={social.id || idx} 
+                                href={social.url} 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-12 h-12 rounded-none bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all shadow-sm"
+                            >
+                                {getSocialIcon(social.platform)}
+                                <span className="sr-only">{social.platform}</span>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>

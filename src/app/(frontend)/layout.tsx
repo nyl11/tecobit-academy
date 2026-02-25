@@ -26,6 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 import { getSiteSettings } from "@/lib/queries/getSiteSettings"
+import { getFooter } from "@/lib/queries/getFooter"
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings()
@@ -43,11 +44,13 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const footerData = await getFooter()
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground transition-colors duration-300`}>
@@ -59,7 +62,7 @@ export default function RootLayout({
         >
           <AuthProvider>
             <NextTopLoader
-              color="#0055FF"
+              color="#79A0BA"
               initialPosition={0.08}
               crawlSpeed={200}
               height={3}
@@ -67,9 +70,9 @@ export default function RootLayout({
               showSpinner={false}
               easing="ease"
               speed={200}
-              shadow="0 0 10px #0055FF,0 0 5px #0055FF"
+              shadow="0 0 10px #79A0BA,0 0 5px #79A0BA"
             />
-            <ConditionalNavigation>
+            <ConditionalNavigation footerData={footerData}>
               <SmoothNavigationProvider>
                 {children}
               </SmoothNavigationProvider>
@@ -77,6 +80,7 @@ export default function RootLayout({
           </AuthProvider>
         </ThemeProvider>
       </body>
+
     </html>
   )
 }

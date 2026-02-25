@@ -171,6 +171,57 @@ export const Courses: CollectionConfig = {
                         },
                     ],
                 },
+                {
+                    label: 'Learning Path',
+                    fields: [
+                        {
+                            name: 'pathSteps',
+                            type: 'array',
+                            admin: {
+                                description: 'Define the learning path steps for this course. Drag to reorder.',
+                            },
+                            fields: [
+                                {
+                                    name: 'stepName',
+                                    type: 'text',
+                                    required: true,
+                                    admin: {
+                                        description: 'Display name for this step (e.g. "JavaScript Fundamentals")',
+                                    },
+                                },
+                                {
+                                    name: 'stepSlug',
+                                    type: 'text',
+                                    required: true,
+                                    admin: {
+                                        description: 'URL-friendly identifier (e.g. "javascript-fundamentals")',
+                                    },
+                                    hooks: {
+                                        beforeValidate: [
+                                            ({ value, siblingData }: any) => {
+                                                if (!value && siblingData?.stepName) {
+                                                    return siblingData.stepName
+                                                        .toLowerCase()
+                                                        .replace(/ /g, '-')
+                                                        .replace(/[^\w-]+/g, '')
+                                                }
+                                                return value
+                                            },
+                                        ],
+                                    },
+                                },
+                                {
+                                    name: 'subject',
+                                    type: 'relationship',
+                                    relationTo: 'subjects',
+                                    admin: {
+                                        description: 'Link to a Subject for detailed syllabus content (optional)',
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                },
             ],
         },
         {

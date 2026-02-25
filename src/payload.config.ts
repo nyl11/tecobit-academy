@@ -15,6 +15,8 @@ import { NewsEvents } from './collections/NewsEvents'
 import { Offices } from './collections/Offices'
 import { ContactMessages } from './collections/ContactMessages'
 import { Enrollments } from './collections/Enrollments'
+import { Testimonials } from './collections/Testimonials'
+import { Subjects } from './collections/Subjects'
 import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
@@ -47,9 +49,11 @@ export default buildConfig({
     Pages,
     Media,
     Courses,
+    Subjects,
     TeamMembers,
     NewsEvents,
     Offices,
+    Testimonials,
     ContactMessages,
     Enrollments
   ],

@@ -79,7 +79,7 @@ export default function MapSection() {
                 className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-primary text-white px-10 py-5 rounded-none font-black uppercase tracking-[0.3em] text-[11px] shadow-2xl shadow-primary/40 hover:bg-foreground transition-all hover:-translate-y-2 flex items-center gap-3 group"
             >
                 <Navigation size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                Navigate Protocol
+                Find Us on the Map
             </a>
         </section>
     );

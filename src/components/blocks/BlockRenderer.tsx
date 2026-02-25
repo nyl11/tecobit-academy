@@ -1,5 +1,8 @@
 import dynamic from 'next/dynamic'
 import React from 'react'
+import type { Page } from '@/payload-types'
+
+type LayoutBlock = NonNullable<Page['layout']>[number]
 
 const HeroBlock = dynamic(() => import('./Hero').then((mod) => mod.HeroBlock), {
   loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
@@ -33,7 +36,7 @@ const PartnersBlock = dynamic(() => import('../home/Partners'), {
   loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
 })
 
-const blockComponents: Record<string, React.ComponentType<any>> = {
+const blockComponents: Record<string, React.ComponentType<LayoutBlock>> = {
   hero: HeroBlock,
   content: ContentBlock,
   impact: ImpactBlock,
@@ -44,7 +47,7 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   partners: PartnersBlock,
 }
 
-export const BlockRenderer: React.FC<{ blocks: any[] }> = ({ blocks }) => {
+export const BlockRenderer: React.FC<{ blocks: NonNullable<Page['layout']> }> = ({ blocks }) => {
   if (!blocks) return null
 
   return (

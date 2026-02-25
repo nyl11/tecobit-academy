@@ -3,8 +3,15 @@
 import { usePathname } from 'next/navigation';
 import { Header } from './Header';
 import Footer from './Footer';
+import type { SiteSetting } from '@/payload-types';
 
-export default function ConditionalNavigation({ children }: { children: React.ReactNode }) {
+export default function ConditionalNavigation({ 
+    children, 
+    footerData 
+}: { 
+    children: React.ReactNode;
+    footerData: NonNullable<SiteSetting['footer']> | null | undefined;
+}) {
     const pathname = usePathname();
 
     const isAuthPage = pathname?.startsWith('/login') || pathname?.startsWith('/register');
@@ -20,7 +27,7 @@ export default function ConditionalNavigation({ children }: { children: React.Re
             <main className="flex-grow">
                 {children}
             </main>
-            <Footer />
+            <Footer footerData={footerData} />
         </div>
     );
 }

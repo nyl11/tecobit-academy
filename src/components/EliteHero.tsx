@@ -137,7 +137,7 @@ export function EliteHero() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.6 }}
                             >
-                                <Button asChild size="lg" className="rounded-none bg-primary hover:bg-foreground hover:text-background text-white font-black uppercase tracking-[0.2em] px-12 h-20 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)] transition-all hover:scale-105 active:scale-95 text-xs group">
+                                <Button asChild size="lg" className="rounded-none bg-primary hover:bg-foreground hover:text-background text-primary-foreground font-black uppercase tracking-[0.2em] px-12 h-20 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)] transition-all hover:scale-105 active:scale-95 text-xs group">
                                     <Link href="/courses" className="flex items-center gap-3">
                                         Launch Career
                                         <Zap size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -163,7 +163,7 @@ export function EliteHero() {
                                 <div className="absolute inset-0 bg-primary/20 rounded-[4rem] blur-[80px] group-hover:bg-primary/40 transition-all duration-700" />
                                 <div className="relative aspect-[3/4] bg-card/50 backdrop-blur-3xl border border-border rounded-none p-8 flex flex-col justify-between overflow-hidden shadow-2xl">
                                     <div className="space-y-4">
-                                        <div className="w-16 h-16 rounded-none bg-primary flex items-center justify-center text-white shadow-xl">
+                                        <div className="w-16 h-16 rounded-none bg-primary flex items-center justify-center text-primary-foreground shadow-xl">
                                             <Sparkles size={32} />
                                         </div>
                                         <h3 className="text-3xl font-black text-foreground tracking-tighter leading-none">

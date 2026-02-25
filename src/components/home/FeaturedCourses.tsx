@@ -1,4 +1,5 @@
 import { getFeaturedCourses } from '@/lib/queries/getFeaturedCourses';
+import type { Course } from '@/payload-types';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, GraduationCap } from 'lucide-react';
 import { CourseCardAdvanced } from '@/components/CourseCardAdvanced';
@@ -25,20 +26,20 @@ export default async function FeaturedCourses() {
                             High-Impact <span className="text-primary">Programs</span>
                         </h2>
                         <p className="text-muted-foreground text-lg md:text-2xl font-medium leading-relaxed opacity-80 max-w-2xl">
-                            Initialize your career evolution with our most heavy-hitting training protocols architected for systemic mastery.
+                            Courses that fit your need and markets demand
                         </p>
                     </div>
 
-                    <Button asChild className="hidden lg:flex bg-primary hover:bg-foreground text-white rounded-none px-12 h-20 text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-primary/20 hover:-translate-y-2 group">
+                    <Button asChild className="hidden lg:flex bg-primary hover:bg-foreground text-primary-foreground rounded-none px-12 h-20 text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-primary/20 hover:-translate-y-2 group">
                         <Link href="/courses" className="flex items-center gap-3">
-                            Execute Full Registry
+                            Explore Our Courses
                             <ArrowRight size={20} className="group-hover:translate-x-3 transition-transform" />
                         </Link>
                     </Button>
                 </div>
 
                 <div className="flex overflow-x-auto snap-x snap-mandatory pb-12 -mx-4 px-4 gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 md:overflow-visible md:pb-0 md:px-0 md:mx-0 no-scrollbar group/grid">
-                    {featuredCourses.map((course: any) => (
+                    {featuredCourses.map((course: Course) => (
                         <div key={course.id} className="snap-center shrink-0 w-[85vw] md:w-auto h-full">
                             <CourseCardAdvanced course={course} />
                         </div>
@@ -46,7 +47,7 @@ export default async function FeaturedCourses() {
                 </div>
 
                 <div className="mt-16 text-center lg:hidden px-4">
-                    <Button asChild className="w-full bg-primary hover:bg-foreground text-white rounded-none h-20 text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-primary/20 group">
+                    <Button asChild className="w-full bg-primary hover:bg-foreground text-primary-foreground rounded-none h-20 text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-primary/20 group">
                         <Link href="/courses" className="flex items-center justify-center gap-3">
                             Full Registry
                             <ArrowRight size={20} className="group-hover:translate-x-3 transition-transform" />

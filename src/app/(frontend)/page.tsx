@@ -1,10 +1,11 @@
 import { Metadata } from 'next'
+import type { Page } from '@/payload-types'
 import { getPageBySlug } from '@/lib/queries/getPages'
 import { BlockRenderer } from '@/components/blocks/BlockRenderer'
-import { notFound } from 'next/navigation'
+import FeaturedCourses from '@/components/home/FeaturedCourses'
+import Testimonials from '@/components/home/Testimonials'
 import MapSection from '@/components/home/MapSection'
 import { EliteHero } from '@/components/EliteHero'
-import CTA from '@/components/home/CTA'
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug('home')
@@ -21,13 +22,15 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const page = await getPageBySlug('home')
+  const hasFeaturedCoursesBlock = page?.layout?.some((block) => block?.blockType === 'featured-courses')
 
   if (!page) {
     // Fallback to static content if no CMS data is found
     return (
       <main className="min-h-screen">
         <EliteHero />
-        <CTA />
+        <FeaturedCourses />
+        <Testimonials />
         <MapSection />
       </main>
     )
@@ -35,7 +38,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
-      <BlockRenderer blocks={page.layout as any[]} />
+      <BlockRenderer blocks={page.layout as NonNullable<Page['layout']>} />
+      {!hasFeaturedCoursesBlock && <FeaturedCourses />}
       <MapSection />
     </main>
   )

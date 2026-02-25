@@ -14,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 6.7%;
 
-    --primary: 220 100% 50%; /* #0055FF — Deep Tech Blue */
+    --primary: 204 32% 60%; /* #79A0BA — Theme Blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%; /* #F5F5F5 */
@@ -31,7 +31,7 @@
 
     --border: 0 0% 89.8%; /* #E5E5E5 */
     --input: 0 0% 89.8%;
-    --ring: 220 100% 50%; /* Match primary */
+    --ring: 204 32% 60%; /* Match primary */
 
     --radius: 0px;
   }
@@ -47,7 +47,7 @@
     --popover: 0 0% 7.8%;
     --popover-foreground: 0 0% 93%;
 
-    --primary: 220 100% 60%; /* #3377FF — Brighter Tech Blue */
+    --primary: 204 32% 60%; /* #79A0BA — Theme Blue */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 10%;
@@ -64,7 +64,7 @@
 
     --border: 0 0% 16.5%; /* #2A2A2A */
     --input: 0 0% 16.5%;
-    --ring: 220 100% 60%;
+    --ring: 204 32% 60%;
   }
 
   * {

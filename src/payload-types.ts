@@ -71,9 +71,11 @@ export interface Config {
     pages: Page;
     media: Media;
     courses: Course;
+    subjects: Subject;
     'team-members': TeamMember;
     'news-events': NewsEvent;
     offices: Office;
+    testimonials: Testimonial;
     'contact-messages': ContactMessage;
     enrollments: Enrollment;
     'payload-kv': PayloadKv;
@@ -87,9 +89,11 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     courses: CoursesSelect<false> | CoursesSelect<true>;
+    subjects: SubjectsSelect<false> | SubjectsSelect<true>;
     'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
     'news-events': NewsEventsSelect<false> | NewsEventsSelect<true>;
     offices: OfficesSelect<false> | OfficesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'contact-messages': ContactMessagesSelect<false> | ContactMessagesSelect<true>;
     enrollments: EnrollmentsSelect<false> | EnrollmentsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -239,8 +243,66 @@ export interface Course {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Define the learning path steps for this course. Drag to reorder.
+   */
+  pathSteps?:
+    | {
+        /**
+         * Display name for this step (e.g. "JavaScript Fundamentals")
+         */
+        stepName: string;
+        /**
+         * URL-friendly identifier (e.g. "javascript-fundamentals")
+         */
+        stepSlug: string;
+        /**
+         * Link to a Subject for detailed syllabus content (optional)
+         */
+        subject?: (string | null) | Subject;
+        id?: string | null;
+      }[]
+    | null;
   status: 'draft' | 'published';
   featured?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subjects".
+ */
+export interface Subject {
+  id: string;
+  /**
+   * Subject name (e.g. "JavaScript", "React", "Data Structures")
+   */
+  title: string;
+  /**
+   * Brief overview of what this subject covers
+   */
+  description?: string | null;
+  /**
+   * Topics covered in this subject. Drag to reorder.
+   */
+  syllabus?:
+    | {
+        /**
+         * Topic title (e.g. "ES6+ Features", "Flexbox & Grid")
+         */
+        topic: string;
+        /**
+         * What students will learn in this topic
+         */
+        description?: string | null;
+        /**
+         * Estimated hours for this topic
+         */
+        hours?: number | null;
+        id?: string | null;
+      }[]
+    | null;
   slug: string;
   updatedAt: string;
   createdAt: string;
@@ -430,6 +492,30 @@ export interface Office {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+  /**
+   * Public image URL (e.g. Unsplash)
+   */
+  avatar?: string | null;
+  rating: number;
+  course?: string | null;
+  /**
+   * Lower numbers appear first
+   */
+  order?: number | null;
+  published?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-messages".
  */
 export interface ContactMessage {
@@ -523,6 +609,10 @@ export interface PayloadLockedDocument {
         value: string | Course;
       } | null)
     | ({
+        relationTo: 'subjects';
+        value: string | Subject;
+      } | null)
+    | ({
         relationTo: 'team-members';
         value: string | TeamMember;
       } | null)
@@ -533,6 +623,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'offices';
         value: string | Office;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: string | Testimonial;
       } | null)
     | ({
         relationTo: 'contact-messages';
@@ -759,8 +853,35 @@ export interface CoursesSelect<T extends boolean = true> {
         endTime?: T;
         id?: T;
       };
+  pathSteps?:
+    | T
+    | {
+        stepName?: T;
+        stepSlug?: T;
+        subject?: T;
+        id?: T;
+      };
   status?: T;
   featured?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "subjects_select".
+ */
+export interface SubjectsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  syllabus?:
+    | T
+    | {
+        topic?: T;
+        description?: T;
+        hours?: T;
+        id?: T;
+      };
   slug?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -818,6 +939,23 @@ export interface OfficesSelect<T extends boolean = true> {
   longitude?: T;
   hoursOfOperation?: T;
   isPrimary?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  company?: T;
+  content?: T;
+  avatar?: T;
+  rating?: T;
+  course?: T;
+  order?: T;
+  published?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -901,6 +1039,33 @@ export interface SiteSetting {
   siteName: string;
   description?: string | null;
   logo?: (string | null) | Media;
+  footer?: {
+    address?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    columns?:
+      | {
+          heading: string;
+          links?:
+            | {
+                label: string;
+                url: string;
+                newTab?: boolean | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+    socialLinks?:
+      | {
+          platform: 'facebook' | 'instagram' | 'linkedin' | 'whatsapp' | 'x' | 'youtube' | 'tiktok';
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+    copyrightText?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -912,6 +1077,35 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
   description?: T;
   logo?: T;
+  footer?:
+    | T
+    | {
+        address?: T;
+        phone?: T;
+        email?: T;
+        columns?:
+          | T
+          | {
+              heading?: T;
+              links?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    newTab?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        socialLinks?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              id?: T;
+            };
+        copyrightText?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

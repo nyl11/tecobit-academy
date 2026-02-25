@@ -54,7 +54,7 @@ const config = {
         },
         // Brutalist monochrome palette
         tecobit: {
-          blue: '#0055FF',
+          blue: '#79A0BA',
           dark: '#111111',
           light: '#FAFAFA',
           gray: '#666666',
