@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { adminOnly } from '../access'
 
 export const NewsEvents: CollectionConfig = {
     slug: 'news-events',
@@ -9,6 +10,9 @@ export const NewsEvents: CollectionConfig = {
     },
     access: {
         read: () => true,
+        create: adminOnly,
+        update: adminOnly,
+        delete: adminOnly,
     },
     fields: [
         {
@@ -32,11 +36,9 @@ export const NewsEvents: CollectionConfig = {
         },
         {
             name: 'image',
-            type: 'text',
+            type: 'upload',
+            relationTo: 'media',
             required: false,
-            admin: {
-                description: 'URL to featured image',
-            },
         },
         {
             name: 'location',

@@ -1,5 +1,6 @@
 
 import { CollectionConfig } from 'payload'
+import { adminOnly } from '../access'
 
 export const Enrollments: CollectionConfig = {
     slug: 'enrollments',
@@ -16,10 +17,10 @@ export const Enrollments: CollectionConfig = {
         },
     },
     access: {
-        read: ({ req: { user } }) => Boolean(user), // Only admin/authenticated users can read
+        read: adminOnly,
         create: () => true, // Still true for the public facing API form submissions
-        update: ({ req: { user } }) => Boolean(user),
-        delete: ({ req: { user } }) => Boolean(user),
+        update: adminOnly,
+        delete: adminOnly,
     },
     fields: [
         {

@@ -12,8 +12,8 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0(react@19.2.1)
       '@payloadcms/db-mongodb':
-        specifier: ^3.73.0
-        version: 3.77.0(payload@3.73.0(graphql@16.13.0)(typescript@5.7.3))
+        specifier: 3.73.0
+        version: 3.73.0(payload@3.73.0(graphql@16.13.0)(typescript@5.7.3))
       '@payloadcms/next':
         specifier: 3.73.0
         version: 3.73.0(@types/react@19.2.1)(graphql@16.13.0)(monaco-editor@0.55.1)(next@15.4.10(@babel/core@7.29.0)(@playwright/test@1.56.1)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.73.0(graphql@16.13.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(typescript@5.7.3)
@@ -1494,10 +1494,10 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@payloadcms/db-mongodb@3.77.0':
-    resolution: {integrity: sha512-4T3UkrkE7Lp2+c8SSnQKjRypXT/7gXmwF/NAMX6J9aE6WXV3+qeGVdevrn8WPmlQVNqWWs1QuExyBpJJt1VSqg==}
+  '@payloadcms/db-mongodb@3.73.0':
+    resolution: {integrity: sha512-Uby6lWjwtaCW6MFL8UFxb0396YIk+wql38yhKGhDHCqfjXAHgLbQXmL2gQrUvkwY/lBV7BbMaRQN+Cbp4mRbYA==}
     peerDependencies:
-      payload: 3.77.0
+      payload: 3.73.0
 
   '@payloadcms/graphql@3.73.0':
     resolution: {integrity: sha512-umDNuCLgkVasIjXqYubzR6rfORnUqiGWygrvPS4i2Q+NMn6RPa7nGVSlNEFPgqjYtOY7JnD8HA5I20melmoNhw==}
@@ -7028,7 +7028,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@payloadcms/db-mongodb@3.77.0(payload@3.73.0(graphql@16.13.0)(typescript@5.7.3))':
+  '@payloadcms/db-mongodb@3.73.0(payload@3.73.0(graphql@16.13.0)(typescript@5.7.3))':
     dependencies:
       mongoose: 8.15.1
       mongoose-paginate-v2: 1.8.5

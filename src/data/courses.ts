@@ -24,9 +24,9 @@ export interface Course {
 export const courses: Course[] = [
     {
         id: '1',
-        title: 'Web Development',
+        title: 'Full-Stack Web Development Specialization',
         slug: 'web-development',
-        description: 'Master modern web development with HTML, CSS, JavaScript, React, and Node.js. Build real-world projects and deploy applications.',
+        description: 'A comprehensive academic track mastering modern web architecture with React, Node.js, and cloud ecosystems. Designed for aspiring software engineers.',
         duration: '6 months',
         level: 'Beginner',
         price: 45000,
@@ -35,31 +35,31 @@ export const courses: Course[] = [
         category: 'Development',
         features: [
             'HTML5, CSS3, JavaScript ES6+',
-            'React.js & Next.js',
-            'Node.js & Express',
-            'MongoDB & PostgreSQL',
-            'RESTful APIs & GraphQL',
-            'Git & GitHub',
-            'Deployment & DevOps basics',
-            'Real-world projects',
-            'Internship opportunity'
+            'React.js & Next.js Architecture',
+            'Node.js & Scalable Backends',
+            'Advanced Data Modeling',
+            'Architectural Patterns',
+            'Professional Version Control',
+            'Cloud Deployment Strategies',
+            'Capping Projects & Dissertation',
+            'Post-Graduate Internship Programs'
         ],
         syllabus: [
             {
-                module: 'Frontend Fundamentals',
-                topics: ['HTML5 & Semantic Web', 'CSS3 & Flexbox/Grid', 'JavaScript Basics', 'DOM Manipulation']
+                module: 'Phase I: Frontend Architecture',
+                topics: ['Semantic Web Engineering', 'Advanced Responsive Layouts', 'Computational Thinking', 'State Management Principles']
             },
             {
-                module: 'Modern JavaScript',
-                topics: ['ES6+ Features', 'Async/Await', 'Promises', 'Fetch API']
+                module: 'Phase II: Dynamic Systems',
+                topics: ['Asynchronous Operations', 'Functional Programming', 'API Design & Integration', 'Client-Side Rendering']
             },
             {
-                module: 'React Development',
-                topics: ['Components & Props', 'State & Hooks', 'React Router', 'Context API']
+                module: 'Phase III: Enterprise React',
+                topics: ['Component Design Patterns', 'Advanced Hooks & Context', 'Performance Optimization', 'Systems Scalability']
             },
             {
-                module: 'Backend Development',
-                topics: ['Node.js Basics', 'Express Framework', 'Database Integration', 'Authentication']
+                module: 'Phase IV: Server-Side Engineering',
+                topics: ['Node.js Runtime Architecture', 'Security Protocols', 'Distributed Databases', 'Microservices Overview']
             }
         ],
         instructor: 'Aashish Thapa',
@@ -68,37 +68,37 @@ export const courses: Course[] = [
     },
     {
         id: '2',
-        title: 'UI/UX Design',
+        title: 'User Experience (UX) Research & Design Certification',
         slug: 'ui-ux-design',
-        description: 'Learn user-centered design principles, wireframing, prototyping, and create stunning user interfaces with Figma and Adobe XD.',
+        description: 'Advanced pedagogical approach to user-centered design systems, cognitive psychology, and industry-standard prototyping methodologies.',
         duration: '4 months',
         level: 'Beginner',
         price: 35000,
         thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80',
         category: 'Design',
         features: [
-            'Design thinking & research',
-            'Wireframing & prototyping',
-            'Figma & Adobe XD',
-            'User research methods',
-            'Information architecture',
-            'Visual design principles',
-            'Usability testing',
-            'Portfolio development',
-            'Industry projects'
+            'Cognitive Design & Research',
+            'Interactive Prototyping Systems',
+            'Enterprise Design Standards',
+            'Behavioral Analysis Methods',
+            'Information Hierarchy',
+            'Visual Communication Principles',
+            'Systems Usability Assessment',
+            'Professional Portfolio Curation',
+            'Collaborative Case Studies'
         ],
         syllabus: [
             {
-                module: 'Design Fundamentals',
-                topics: ['Color Theory', 'Typography', 'Layout Principles', 'Design Systems']
+                module: 'Theories of Visual Design',
+                topics: ['Color Psychology', 'Typographic Systems', 'Grid & Layout Theory', 'Design Language Systems']
             },
             {
-                module: 'User Research',
-                topics: ['User Personas', 'User Journey Maps', 'Competitive Analysis', 'Surveys & Interviews']
+                module: 'Research Methodologies',
+                topics: ['User Persona Development', 'Ethnographic Research', 'Competitive Matrix Analysis', 'Quantitative Surveys']
             },
             {
-                module: 'Prototyping',
-                topics: ['Low-fidelity Wireframes', 'High-fidelity Mockups', 'Interactive Prototypes', 'Design Handoff']
+                module: 'Systems Prototyping',
+                topics: ['Architectural Wireframing', 'High-Fidelity Modeling', 'Interaction Design', 'Technical Handoff Protocols']
             }
         ],
         instructor: 'Kritika Rajbhandari',
@@ -107,37 +107,37 @@ export const courses: Course[] = [
     },
     {
         id: '3',
-        title: 'Quality Assurance (QA)',
+        title: 'Professional Quality Assurance & Systems Testing',
         slug: 'quality-assurance',
-        description: 'Become a skilled QA engineer with manual and automated testing expertise. Learn test planning, execution, and bug tracking.',
+        description: 'A rigorous curriculum focused on software integrity, automated validation frameworks, and enterprise-grade testing methodologies.',
         duration: '3 months',
         level: 'Beginner',
         price: 30000,
         thumbnail: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80',
         category: 'Testing',
         features: [
-            'Manual testing fundamentals',
-            'Test case design',
-            'Selenium & automation',
-            'API testing with Postman',
-            'Performance testing',
-            'Agile & Scrum methodology',
-            'JIRA & bug tracking',
-            'CI/CD pipelines',
-            'Hands-on projects'
+            'Validation Fundamentals',
+            'Systematic Case Design',
+            'Automation Engineering',
+            'Advanced API Validation',
+            'Performance & Stress Analysis',
+            'Agile Governance Standards',
+            'Lifecycle Management Tools',
+            'CI/CD Pipeline Integration',
+            'Practicum Assessments'
         ],
         syllabus: [
             {
-                module: 'Testing Fundamentals',
-                topics: ['SDLC & STLC', 'Test Levels', 'Test Types', 'Defect Life Cycle']
+                module: 'Theoretical Foundations',
+                topics: ['SDLC & STLC Frameworks', 'Testing Taxonomy', 'Hierarchical Test Levels', 'System Deficiency Lifecycle']
             },
             {
-                module: 'Manual Testing',
-                topics: ['Test Planning', 'Test Case Writing', 'Test Execution', 'Bug Reporting']
+                module: 'Manual Validation Protocols',
+                topics: ['Strategic Test Planning', 'Formal Case Documentation', 'Execution Governance', 'Defect Reporting Systems']
             },
             {
-                module: 'Automation Testing',
-                topics: ['Selenium WebDriver', 'Test Frameworks', 'Page Object Model', 'CI/CD Integration']
+                module: 'Automation Engineering Phase',
+                topics: ['Selenium WebDriver Architecture', 'Framework Design Patterns', 'Declarative Scripting', 'Continuous Integration']
             }
         ],
         instructor: 'Suresh Dhakal',
@@ -146,37 +146,37 @@ export const courses: Course[] = [
     },
     {
         id: '4',
-        title: 'DevOps Engineering',
+        title: 'Advanced DevOps & Site Reliability Engineering',
         slug: 'devops-engineering',
-        description: 'Master DevOps practices with Docker, Kubernetes, CI/CD pipelines, and cloud platforms. Automate infrastructure and deployments.',
+        description: 'Elite technical track mastering platform orchestration, automated infrastructure, and continuous delivery systems for modern enterprises.',
         duration: '5 months',
         level: 'Intermediate',
         price: 50000,
         thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
         category: 'DevOps',
         features: [
-            'Linux administration',
-            'Docker & Kubernetes',
-            'Jenkins & GitLab CI/CD',
-            'AWS/Azure fundamentals',
-            'Infrastructure as Code',
-            'Monitoring & logging',
-            'Ansible & Terraform',
-            'Security best practices',
-            'Real-world scenarios'
+            'Linux Systems Governance',
+            'Advanced Orchestration',
+            'Automated Integration Pipelines',
+            'Cloud Architecture Frameworks',
+            'Infrastructure as Code (IaC)',
+            'SRE Observability Standards',
+            'Configuration Management Systems',
+            'Enterprise Security Protocols',
+            'Complex Systems Simulation'
         ],
         syllabus: [
             {
-                module: 'Linux & Shell Scripting',
-                topics: ['Linux Commands', 'Shell Scripting', 'File Permissions', 'System Administration']
+                module: 'Systems Infrastructure',
+                topics: ['Unix Architecture', 'Automated Shell Scripting', 'Permission Hierarchies', 'System Hardening']
             },
             {
-                module: 'Containerization',
-                topics: ['Docker Basics', 'Docker Compose', 'Container Networking', 'Docker Registry']
+                module: 'Containerization Science',
+                topics: ['Docker Engine Internals', 'Composition Strategies', 'Network Virtualization', 'Registry Management']
             },
             {
-                module: 'Orchestration',
-                topics: ['Kubernetes Architecture', 'Pods & Deployments', 'Services & Ingress', 'Helm Charts']
+                module: 'Orchestration & Governance',
+                topics: ['Kubernetes Control Plane', 'Scalable Deployments', 'Ingress Control Systems', 'Resource Optimization']
             }
         ],
         instructor: 'Rajan Maharjan',
@@ -185,37 +185,36 @@ export const courses: Course[] = [
     },
     {
         id: '5',
-        title: 'Mobile App Development',
+        title: 'Mobile Systems Engineering Specialization',
         slug: 'mobile-app-development',
-        description: 'Build native and cross-platform mobile applications using React Native and Flutter. Deploy to iOS and Android app stores.',
+        description: 'Professional curriculum for multi-platform mobility solutions, focusing on cross-platform frameworks and native interaction patterns.',
         duration: '6 months',
         level: 'Intermediate',
         price: 48000,
         thumbnail: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
         category: 'Development',
         features: [
-            'React Native fundamentals',
-            'Flutter & Dart',
-            'Mobile UI/UX patterns',
-            'State management',
-            'API integration',
-            'Push notifications',
-            'App store deployment',
-            'Native modules',
-            'Live projects'
+            'Cross-Platform Architecture',
+            'Mobile Behavioral Patterns',
+            'Advanced State Persistence',
+            'Institutional API Integration',
+            'Notification Ecosystems',
+            'Global Distribution Protocols',
+            'Native Bridge Architecture',
+            'Captsone Mobility Projects'
         ],
         syllabus: [
             {
-                module: 'Mobile Development Basics',
-                topics: ['Mobile Architecture', 'Navigation Patterns', 'Responsive Design', 'Platform Differences']
+                module: 'Mobility Foundations',
+                topics: ['Systemic Mobile Architecture', 'Interaction Paradigms', 'Context-Aware Design', 'Cross-Platform Strategies']
             },
             {
-                module: 'React Native',
-                topics: ['Components & Styling', 'Navigation', 'AsyncStorage', 'Third-party Libraries']
+                module: 'Reactive Mobility (React Native)',
+                topics: ['Component Systems', 'Persistent Navigation', 'Resource Managed Storage', 'Native Module Bridges']
             },
             {
-                module: 'Flutter Development',
-                topics: ['Dart Language', 'Widgets & Layouts', 'State Management', 'Firebase Integration']
+                module: 'Declarative UI (Flutter)',
+                topics: ['Dart Language Theory', 'Widget Implementation', 'Reactive State Patterns', 'Enterprise Backend Services']
             }
         ],
         instructor: 'Bibek Shrestha',
@@ -224,37 +223,36 @@ export const courses: Course[] = [
     },
     {
         id: '6',
-        title: 'Project Management',
+        title: 'Strategic Project Management & Agile Governance',
         slug: 'project-management',
-        description: 'Learn agile project management methodologies, Scrum framework, and tools like JIRA. Prepare for PMP and Scrum Master certifications.',
+        description: 'Leadership track designed for technical project managers, focusing on governance frameworks, risk mitigation, and systemic delivery.',
         duration: '3 months',
         level: 'Beginner',
         price: 32000,
         thumbnail: 'https://images.unsplash.com/photo-145416520573eb-e7054ae5367b?auto=format&fit=crop&w=800&q=80',
         category: 'Management',
         features: [
-            'Agile & Scrum methodology',
-            'JIRA & Confluence',
-            'Sprint planning',
-            'Team collaboration',
-            'Risk management',
-            'Stakeholder communication',
-            'Metrics & reporting',
-            'Certification prep',
-            'Case studies'
+            'Agile Governance Frameworks',
+            'Strategic Collaboration Tools',
+            'Lifecycle Planning Systems',
+            'Organizational Risk Mitigation',
+            'Technical Stakeholder Alignment',
+            'Outcome-Based Metrics',
+            'Certification Board Prep',
+            'Corporate Case Analysis'
         ],
         syllabus: [
             {
-                module: 'Project Management Fundamentals',
-                topics: ['Project Life Cycle', 'Scope & Requirements', 'Time & Cost Management', 'Quality Assurance']
+                module: 'Governance Fundamentals',
+                topics: ['Institutional Project Lifecycles', 'Hierarchical Requirements', 'Capital & Resource Planning', 'Quality Management Standards']
             },
             {
-                module: 'Agile Methodologies',
-                topics: ['Scrum Framework', 'Kanban', 'Sprint Planning', 'Daily Standups']
+                module: 'Methodological Frameworks',
+                topics: ['Agile Theory & Practice', 'Empirical Process Control', 'Sprint Governance', 'Adaptive Flow Management']
             },
             {
-                module: 'Tools & Techniques',
-                topics: ['JIRA Administration', 'Confluence Documentation', 'Gantt Charts', 'Burndown Charts']
+                module: 'Operational Control Systems',
+                topics: ['Information Radiators', 'Collaborative Intelligence', 'Predictive Modeling', 'Performance Analytics']
             }
         ],
         instructor: 'Nabin Thapa',

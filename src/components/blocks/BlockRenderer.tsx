@@ -36,7 +36,7 @@ const PartnersBlock = dynamic(() => import('../home/Partners'), {
   loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
 })
 
-const blockComponents: Record<string, React.ComponentType<LayoutBlock>> = {
+const blockComponents: Record<string, React.ComponentType<any>> = {
   hero: HeroBlock,
   content: ContentBlock,
   impact: ImpactBlock,

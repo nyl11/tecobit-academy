@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getNewsEventById } from '@/lib/queries/getNewsEventById'
+import { getImageUrl } from '@/lib/getImageUrl'
 
 import { Calendar, MapPin, Clock, ArrowLeft, Share2, Ticket } from 'lucide-react'
 import Link from 'next/link'
@@ -50,7 +51,7 @@ export default async function NewsEventDetailPage({ params }: PageProps) {
                 title: dummyItem.title,
                 type: dummyItem.category === 'Event' ? 'event' : 'news',
                 description: dummyItem.summary, // In real app, dummy data might not have full content, reusing summary
-                image: dummyItem.image,
+                image: dummyItem.image, // dummy data uses plain string URLs
                 location: dummyItem.location,
                 eventDate: dummyItem.date, // Note: dummy date is string, CMS date is date string
                 createdAt: new Date().toISOString()
@@ -130,17 +131,20 @@ export default async function NewsEventDetailPage({ params }: PageProps) {
             <div className="container-custom mx-auto px-4 py-12">
                 <div className="max-w-4xl mx-auto">
                     {/* Featured Image */}
-                    {item.image && (
-                        <div className="relative aspect-video w-full rounded-none overflow-hidden mb-12 shadow-2xl">
-                            <Image
-                                src={item.image}
-                                alt={item.title}
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                        </div>
-                    )}
+                    {(() => {
+                        const imgUrl = typeof item.image === 'string' ? item.image : item.image?.url
+                        return imgUrl ? (
+                            <div className="relative aspect-video w-full rounded-none overflow-hidden mb-12 shadow-2xl">
+                                <Image
+                                    src={imgUrl}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                            </div>
+                        ) : null
+                    })()}
 
                     <div className="grid md:grid-cols-12 gap-12">
                         {/* Main Content */}

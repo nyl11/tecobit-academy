@@ -49,8 +49,8 @@ export function CourseCardAdvanced({ course }: { course: Course }) {
             <div className="space-y-6 flex-grow flex flex-col">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-primary text-[10px] font-black uppercase tracking-[0.3em]">
-                        <Sparkles size={12} className="animate-pulse" />
-                        Master Registry
+                        
+                        
                     </div>
                     <div className="flex items-center gap-1.5 text-primary font-black text-[10px] bg-primary/10 px-4 py-1.5 rounded-none border border-primary/20 tracking-widest uppercase">
                         <Star size={12} className="fill-current" />

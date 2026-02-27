@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { seoFields } from '../fields/seo'
 import { Hero, Content, Impact, FeaturedCourses, Testimonials, FAQ, CTA, Partners } from '../blocks'
+import { adminOnly } from '../access'
 
 export const Pages: CollectionConfig = {
     slug: 'pages',
@@ -17,9 +18,9 @@ export const Pages: CollectionConfig = {
                 },
             }
         },
-        update: ({ req: { user } }) => Bool(user),
-        delete: ({ req: { user } }) => Bool(user),
-        create: ({ req: { user } }) => Bool(user),
+        create: adminOnly,
+        update: adminOnly,
+        delete: adminOnly,
     },
     versions: {
         drafts: true,
@@ -68,5 +69,3 @@ export const Pages: CollectionConfig = {
         }
     ],
 }
-
-const Bool = (user: unknown) => !!user

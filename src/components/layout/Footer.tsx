@@ -69,7 +69,8 @@ export default function Footer({ footerData }: FooterProps) {
             <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-primary/5 rounded-none blur-[100px] -mt-32" />
 
             <div className="container-custom relative z-10 mx-auto px-4 md:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-16 lg:gap-12 mb-24">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+
 
                     {/* Brand Column */}
                     <div className="lg:col-span-2 space-y-10">
@@ -81,7 +82,6 @@ export default function Footer({ footerData }: FooterProps) {
                         <div className="space-y-6 text-sm leading-relaxed">
                             <div className="space-y-2">
                                 <h3 className="text-foreground font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                                    
                                     Tecobit Technology Pvt Ltd
                                 </h3>
                                 <p className="opacity-80">
@@ -98,39 +98,12 @@ export default function Footer({ footerData }: FooterProps) {
                                 </p>
                             </div>
                         </div>
-
-                        <div className="pt-6 flex gap-6 text-[10px] font-black uppercase tracking-[0.2em]">
-                            <Link href="/terms" className="hover:text-primary transition-colors">Safety Protocols</Link>
-                            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Axis</Link>
-                        </div>
                     </div>
-
-                    {/* Dynamic Link Columns */}
-                    {columns.map((col, idx) => (
-                        <div key={col.id || idx} className="space-y-8">
-                            <h4 className="text-foreground text-[10px] font-black uppercase tracking-[0.4em] opacity-50">
-                                {col.heading}
-                            </h4>
-                            <ul className="space-y-4 text-sm font-bold">
-                                {col.links?.map((link, linkIdx) => (
-                                    <li key={link.id || linkIdx}>
-                                        <Link 
-                                            href={link.url} 
-                                            target={link.newTab ? "_blank" : "_self"}
-                                            rel={link.newTab ? "noopener noreferrer" : undefined}
-                                            className="hover:text-primary transition-all hover:translate-x-1 block"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
                 </div>
 
                 {/* Bottom Bar */}
                 <div className="pt-12 border-t border-border flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
+
                     <p className="opacity-50">
                         {copyrightText}
                     </p>

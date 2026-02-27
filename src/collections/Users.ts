@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { adminOnly, adminOrSelf } from '../access'
 
 export const Users: CollectionConfig = {
     slug: 'users',
@@ -10,15 +11,9 @@ export const Users: CollectionConfig = {
     auth: true,
     access: {
         read: () => true,
-        create: () => true,
-        update: ({ req: { user } }) => {
-            if (user) return true
-            return false
-        },
-        delete: ({ req: { user } }) => {
-            if (user) return true
-            return false
-        },
+        create: adminOnly,
+        update: adminOrSelf,
+        delete: adminOnly,
     },
     fields: [
         {
@@ -36,6 +31,10 @@ export const Users: CollectionConfig = {
             ],
             defaultValue: 'student',
             required: true,
+            saveToJWT: true,
+            access: {
+                update: ({ req: { user } }) => Boolean(user?.role === 'admin'),
+            },
         },
         {
             name: 'phoneNumber',

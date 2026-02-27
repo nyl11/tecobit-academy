@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { adminOnly } from '../access'
 
 export const ContactMessages: CollectionConfig = {
     slug: 'contact-messages',
@@ -8,8 +9,10 @@ export const ContactMessages: CollectionConfig = {
         group: 'BUSINESS',
     },
     access: {
-        read: ({ req: { user } }) => Boolean(user),
+        read: adminOnly,
         create: () => true,
+        update: adminOnly,
+        delete: adminOnly,
     },
     fields: [
         {

@@ -24,30 +24,30 @@ export default function TestimonialsClient({ title, testimonials }: Testimonials
     if (!testimonials?.length) return null
 
     return (
-        <section className="py-24 md:py-40 bg-background overflow-hidden relative transition-colors duration-500 border-y border-border">
+        <section className="py-16 md:py-24 bg-background overflow-hidden relative transition-colors duration-500 border-y border-border">
             <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary/5 rounded-none blur-[100px] md:blur-[140px] -mr-32 md:-mr-64 -mt-32 md:-mt-64 animate-pulse-slow" />
             <div className="absolute bottom-0 left-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-blue-500/5 rounded-none blur-[100px] md:blur-[140px] -ml-32 md:-ml-64 -mb-32 md:-mb-64 animate-pulse-slow delay-1000" />
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pattern-grid-lg animate-pulse-slow" />
 
             <div className="container-custom relative z-10 px-4">
-                <div className="text-center max-w-4xl mx-auto mb-20 md:mb-28 space-y-6">
+                <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20 space-y-6">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-black uppercase tracking-[0.3em] text-[10px]"
                     >
                         <UserCheck size={16} className="animate-pulse" />
-                        System Validation
+                        Success Stories
                     </motion.div>
-                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-foreground mb-6 leading-[1.1] tracking-tighter uppercase">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 leading-[1.1] tracking-tighter uppercase">
                         {title || (
                             <>
-                                Our Graduates <br /> <span className="text-primary">Synchronized</span>
+                                Our Graduates <br /> <span className="text-primary">Success Stories</span>
                             </>
                         )}
                     </h2>
-                    <p className="text-muted-foreground text-lg md:text-2xl font-medium leading-relaxed opacity-80 max-w-2xl mx-auto">
-                        Peer-reviewed success protocols from individuals who have successfully executed their career transformations.
+                    <p className="text-muted-foreground text-lg md:text-xl font-medium leading-relaxed opacity-80 max-w-2xl mx-auto">
+                        Peer-reviewed success stories from individuals who have successfully executed their career transformations.
                     </p>
                 </div>
 

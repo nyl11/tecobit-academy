@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin, Globe, ArrowRight, MessageSquare, Sparkles, Naviga
 export async function generateMetadata(): Promise<Metadata> {
     const page = await getPageBySlug('contact')
     return {
-        title: page?.seo?.title || 'Contact Architecture - Tecobit',
+        title: page?.seo?.title || 'Contact Us - Tecobit',
         description: page?.seo?.description,
     }
 }
@@ -27,15 +27,15 @@ export default async function ContactPage() {
                 <div className="space-y-6 relative z-10 max-w-5xl">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">
                         <Sparkles size={12} className="animate-pulse" />
-                        Infrastructure Hub Access
+                        Direct Communication
                     </div>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-foreground leading-[0.95] mb-6 tracking-tighter uppercase">
-                        Establish <span className="text-primary">Uplink</span>
+                        Connect With <span className="text-primary">us</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-bold opacity-80 uppercase tracking-tight">
-                        Establish a secure line with our team architectures. <br className="hidden md:block" />
-                        We are ready to synchronize your project goals.
+                       Ready to start your learning journey? <br className="hidden md:block" />
+Our instructors are here to help you reach your academic goals.
                     </p>
                 </div>
             </section>
@@ -45,10 +45,8 @@ export default async function ContactPage() {
                     {/* Contact Info Matrix */}
                     <div className="space-y-16">
                         <div className="space-y-6">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
-                                Infrastructure Node
-                            </div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight leading-none uppercase">Physical Hub & <br /><span className="text-primary">Digital Link</span></h2>
+                            
+                            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight leading-none uppercase">Address & <br /><span className="text-primary">Digital Contact</span></h2>
                             <p className="text-base text-muted-foreground leading-relaxed border-l-4 border-primary/20 pl-8 opacity-80 font-medium">
                                 Reach out through our official channels or visit our innovation nodes in person for a direct system sync.
                             </p>
@@ -58,19 +56,19 @@ export default async function ContactPage() {
                             {[
                                 {
                                     icon: <Mail className="text-primary" size={20} />,
-                                    label: 'Email Identity',
+                                    label: 'Email Address',
                                     value: 'info@tecobit.cloud',
                                     href: 'mailto:info@tecobit.cloud'
                                 },
                                 {
                                     icon: <Phone className="text-primary" size={20} />,
-                                    label: 'Direct Frequency',
+                                    label: 'Phone Number',
                                     value: '+977 974-5697694',
                                     href: 'tel:+9779745697694'
                                 },
                                 {
                                     icon: <MapPin className="text-primary" size={20} />,
-                                    label: 'Stationed Location',
+                                    label: 'Location',
                                     value: 'Sankhamul-31, Kathmandu',
                                     href: '#'
                                 }
@@ -117,8 +115,8 @@ export default async function ContactPage() {
                             <div className="absolute bottom-0 left-0 w-32 h-[1px] bg-gradient-to-r from-primary to-transparent" />
 
                             <div className="space-y-3 mb-12 text-center lg:text-left">
-                                <h3 className="text-3xl font-bold text-foreground tracking-tight uppercase leading-none">Initialize <span className="text-primary">Uplink</span></h3>
-                                <p className="text-sm text-muted-foreground font-medium uppercase tracking-wide opacity-80">Transmit your query below to begin synchronization.</p>
+                                <h3 className="text-3xl font-bold text-foreground tracking-tight uppercase leading-none">Message Us</h3>
+                                <p className="text-sm text-muted-foreground font-medium uppercase tracking-wide opacity-80">Send your message below to connect with an academic advisor.</p>
                             </div>
 
                             <Suspense fallback={<div className="text-center p-24 space-y-6 text-muted-foreground">

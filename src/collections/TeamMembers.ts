@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { adminOnly } from '../access'
 
 export const TeamMembers: CollectionConfig = {
     slug: 'team-members',
@@ -9,6 +10,9 @@ export const TeamMembers: CollectionConfig = {
     },
     access: {
         read: () => true,
+        create: adminOnly,
+        update: adminOnly,
+        delete: adminOnly,
     },
     fields: [
         {
@@ -28,11 +32,9 @@ export const TeamMembers: CollectionConfig = {
         },
         {
             name: 'image',
-            type: 'text',
+            type: 'upload',
+            relationTo: 'media',
             required: false,
-            admin: {
-                description: 'URL to profile image',
-            },
         },
         {
             name: 'email',

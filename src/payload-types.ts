@@ -197,10 +197,7 @@ export interface Course {
   id: string;
   title: string;
   instructor: string;
-  /**
-   * URL to course image
-   */
-  image?: string | null;
+  image?: (string | null) | Media;
   description: string;
   price: number;
   duration: string;
@@ -428,10 +425,7 @@ export interface TeamMember {
   name: string;
   position: string;
   bio: string;
-  /**
-   * URL to profile image
-   */
-  image?: string | null;
+  image?: (string | null) | Media;
   email: string;
   linkedin?: string | null;
   twitter?: string | null;
@@ -451,10 +445,7 @@ export interface NewsEvent {
   title: string;
   type: 'news' | 'event';
   description: string;
-  /**
-   * URL to featured image
-   */
-  image?: string | null;
+  image?: (string | null) | Media;
   location?: string | null;
   address?: string | null;
   eventDate?: string | null;
@@ -479,10 +470,7 @@ export interface Office {
   postalCode: string;
   phone: string;
   email: string;
-  /**
-   * URL to office image
-   */
-  image?: string | null;
+  image?: (string | null) | Media;
   latitude?: number | null;
   longitude?: number | null;
   hoursOfOperation?: string | null;
@@ -500,10 +488,7 @@ export interface Testimonial {
   role: string;
   company: string;
   content: string;
-  /**
-   * Public image URL (e.g. Unsplash)
-   */
-  avatar?: string | null;
+  avatar?: (string | null) | Media;
   rating: number;
   course?: string | null;
   /**
