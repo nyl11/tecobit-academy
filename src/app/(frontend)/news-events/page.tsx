@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { getNewsEvents } from '@/lib/queries/getNewsEvents'
 import { newsAndEvents } from '@/data/news'
 import { Badge } from '@/components/ui/badge'
+import { getImageUrl } from '@/lib/getImageUrl'
 
 export async function generateMetadata(): Promise<Metadata> {
     const page = await getPageBySlug('news-events')
@@ -36,7 +37,7 @@ export default async function NewsEventsPage() {
         category: item.type === 'event' ? 'Technical Event' : 'System Update',
         date: formatDate(item.type === 'event' ? item.eventDate : item.createdAt),
         summary: item.description,
-        image: item.image || '/images/logo.png', // Fallback image
+        image: getImageUrl(item.image, '/images/logo.png'), // Fallback image
         location: item.location
     })) : newsAndEvents // Fallback to dummy data if no CMS data
 

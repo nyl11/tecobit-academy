@@ -38,6 +38,11 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: settings.description || "Transform your career with industry-leading IT training.",
     keywords: "IT training Nepal, Web Development, UI/UX Design, DevOps, Mobile Development, QA, Project Management",
+    icons: {
+      icon: '/favicon.png',
+      shortcut: '/favicon.png',
+      apple: '/favicon.png',
+    },
     openGraph: {
       images: settings.logo && typeof settings.logo !== 'string' ? [{ url: settings.logo.url || '' }] : [],
     }

@@ -23,14 +23,12 @@ import {
 import { Course } from '@/payload-types'
 import { useRouter } from 'next/navigation'
 import PathNav from '@/components/courses/PathNav'
+import { getImageUrl } from '@/lib/getImageUrl'
 
 export default function CourseDetailClient({ course }: { course: Course }) {
     const router = useRouter()
 
-    const imageUrl =
-        typeof course.image === 'string'
-            ? course.image
-            : (course.image as any)?.url || '/images/logo.png'
+    const imageUrl = getImageUrl(course.image)
 
     const handleEnroll = () => {
         router.push(`/courses/${course.slug}/enroll`)

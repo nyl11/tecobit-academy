@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { adminOnly } from '../access'
 
 export const Testimonials: CollectionConfig = {
     slug: 'testimonials',
@@ -9,6 +10,9 @@ export const Testimonials: CollectionConfig = {
     },
     access: {
         read: () => true,
+        create: adminOnly,
+        update: adminOnly,
+        delete: adminOnly,
     },
     fields: [
         {
@@ -33,11 +37,9 @@ export const Testimonials: CollectionConfig = {
         },
         {
             name: 'avatar',
-            type: 'text',
+            type: 'upload',
+            relationTo: 'media',
             required: false,
-            admin: {
-                description: 'Public image URL (e.g. Unsplash)',
-            },
         },
         {
             name: 'rating',

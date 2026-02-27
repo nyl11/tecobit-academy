@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { adminOnly } from '../access'
 
 export const Courses: CollectionConfig = {
     slug: 'courses',
@@ -9,6 +10,9 @@ export const Courses: CollectionConfig = {
     },
     access: {
         read: () => true,
+        create: adminOnly,
+        update: adminOnly,
+        delete: adminOnly,
     },
     fields: [
         {
@@ -29,12 +33,9 @@ export const Courses: CollectionConfig = {
                         },
                         {
                             name: 'image',
-                            type: 'text',
-                            label: 'Image URL',
+                            type: 'upload',
+                            relationTo: 'media',
                             required: false,
-                            admin: {
-                                description: 'URL to course image',
-                            },
                         },
                         {
                             name: 'description',

@@ -21,9 +21,10 @@ export default function MapSection() {
                 ></iframe>
             </div>
 
-            {/* Elite Overlay Card */}
-            <div className="absolute top-1/2 left-4 md:left-24 lg:left-32 transform -translate-y-1/2 z-10">
-                <div className="bg-card/90 backdrop-blur-2xl p-10 rounded-none shadow-2xl border border-border max-w-sm w-full space-y-8 relative overflow-hidden group">
+            {/* Elite Overlay Card Container */}
+            <div className="absolute inset-0 z-10 pointer-events-none">
+                <div className="container-custom relative h-full flex items-center">
+                    <div className="bg-card/90 backdrop-blur-2xl p-10 rounded-none shadow-2xl border border-border max-w-sm w-full space-y-8 relative overflow-hidden group pointer-events-auto">
                     {/* Active Status */}
                     <div className="absolute top-8 right-8 flex items-center gap-2">
                         <div className="w-2 h-2 rounded-none bg-primary animate-ping" />
@@ -32,10 +33,10 @@ export default function MapSection() {
 
                     <div className="space-y-4">
                         <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-none">
-                            Infrastructure Node
+                            Tecobit Technology Pvt. Ltd.
                         </Badge>
                         <h3 className="text-2xl font-black text-foreground leading-none tracking-tighter uppercase">
-                            Tecobit <span className="text-primary">Hub</span>
+                            Tecobit <span className="text-primary">Academy</span>
                         </h3>
                         <p className="text-sm text-muted-foreground font-medium leading-relaxed opacity-80">
                             31 Pragatinagar Marg, Kathmandu 44600, Digital Axis
@@ -68,6 +69,7 @@ export default function MapSection() {
                             </a>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
 

@@ -183,7 +183,7 @@ export const Header = () => {
 
                 <div className="text-center pt-4 border-t border-border">
                   <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest">
-                    Tecobit Learning Hub
+                    Tecobit Academy
                   </p>
                 </div>
               </div>

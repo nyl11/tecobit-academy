@@ -59,7 +59,7 @@ export default buildConfig({
   ],
   globals: [SiteSettings],
   editor: lexicalEditor({}),
-  secret: process.env.PAYLOAD_SECRET || 'super-secret-key-123456789',
+  secret: process.env.PAYLOAD_SECRET!,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

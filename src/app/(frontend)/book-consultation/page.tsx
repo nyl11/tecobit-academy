@@ -68,7 +68,7 @@ export default async function ConsultationPage() {
                                 },
                                 {
                                     icon: <Users className="text-primary" size={24} />,
-                                    title: 'Elite Training Hub',
+                                    title: 'Elite Training',
                                     description: 'Customized training streams to synchronize your workforce with next-gen technical capabilities.'
                                 }
                             ].map((item, index) => (

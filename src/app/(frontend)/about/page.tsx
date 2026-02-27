@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { getPageBySlug } from '@/lib/queries/getPages'
-import { teamMembers } from '@/data/team'
+import { getTeamMembers } from '@/lib/queries/getTeamMembers'
 import { Sparkles, Target, Zap, Award, Globe, Linkedin, Twitter, Mail } from 'lucide-react'
+import { getImageUrl, getImageAlt } from '@/lib/getImageUrl'
 
 export async function generateMetadata(): Promise<Metadata> {
     const page = await getPageBySlug('about')
@@ -18,6 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
+    const teamMembers = await getTeamMembers()
+
     return (
         <main className="min-h-screen bg-background text-foreground transition-colors duration-500 selection:bg-primary/30">
             {/* Elite Hero Section */}
@@ -30,19 +33,19 @@ export default async function AboutPage() {
                 <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pattern-grid-lg animate-pulse-slow"></div>
 
                 <div className="space-y-6 relative z-10 max-w-5xl">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">
-                        <Sparkles size={12} className="animate-pulse" />
-                        Infrastructure Origin
-                    </div>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-tight leading-[1.1] uppercase">
-                        The <span className="text-primary">Genesis</span> of Digital
-                    </h1>
+    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">
+        <Sparkles size={12} className="animate-pulse" />
+        Our Story
+    </div>
+    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-tight leading-[1.1] uppercase">
+        Shaping Digital Futures <span className="text-primary">Together</span>
+    </h1>
 
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-bold opacity-80 uppercase tracking-tight">
-                        Innovating the architecture of digital education. <br className="hidden md:block" />
-                        Bridging the gap between raw potential and systemic mastery.
-                    </p>
-                </div>
+    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-bold opacity-80 uppercase tracking-tight">
+        Making tech education inspiring, accessible, and community-driven. <br className="hidden md:block" />
+        Guiding you from your first line of code to real-world confidence.
+    </p>
+</div>
             </section>
 
             {/* Mission Sync Section */}
@@ -56,10 +59,11 @@ export default async function AboutPage() {
                         <div className="space-y-10">
                             <div className="space-y-6">
                                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
-                                    Global Mission Node
+                                    Our mission
                                 </div>
                                 <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-none tracking-tight uppercase">
-                                    Architecting the <br /> Next <span className="text-primary">Elite</span> Stream.
+                                   Join the <span className="text-primary">Elite</span> Stream 
+                                 of <span className="text-primary">IT</span> Talent
                                 </h2>
                             </div>
 
@@ -113,7 +117,7 @@ export default async function AboutPage() {
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
                                 Logic Protocols
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-none uppercase">Core <span className="text-primary">Synchronicity</span></h2>
+                            <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-none uppercase">Core <span className="text-primary">Principle</span></h2>
                             <p className="text-base md:text-lg text-muted-foreground font-medium opacity-80 uppercase tracking-wide">Guiding principles that define our systemic approach to excellence.</p>
                         </div>
                     </div>
@@ -148,36 +152,44 @@ export default async function AboutPage() {
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] uppercase tracking-[0.2em]">
                             The Network Mentors
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight leading-[1] uppercase">The Minds Behind <br /><span className="text-primary">Synchronicity</span></h2>
+                        <h2 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight leading-[1] uppercase">The Minds Behind <br /><span className="text-primary">Tecobit Academy</span></h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
                         {teamMembers.map((member) => (
                             <div key={member.id} className="group relative overflow-hidden rounded-none bg-card border border-border aspect-[4/5] shadow-sm hover:shadow-2xl transition-all duration-1000">
-                                <Image
-                                    src={member.image}
-                                    alt={member.name}
-                                    fill
-                                    className="object-cover transition-all duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
-                                />
+                                {member.image && typeof member.image !== 'string' && member.image.url && (
+                                    <Image
+                                        src={member.image.url}
+                                        alt={getImageAlt(member.image, member.name)}
+                                        fill
+                                        className="object-cover transition-all duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
+                                    />
+                                )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
 
                                 <div className="absolute top-6 right-6 flex flex-col gap-3 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-700 delay-100">
-                                    <div className="w-10 h-10 rounded-none bg-primary text-white flex items-center justify-center hover:bg-foreground hover:text-background transition-all cursor-pointer shadow-xl">
-                                        <Linkedin size={18} />
-                                    </div>
-                                    <div className="w-10 h-10 rounded-none bg-card border border-border text-muted-foreground flex items-center justify-center hover:text-primary transition-all cursor-pointer shadow-xl">
-                                        <Twitter size={18} />
-                                    </div>
-                                    <div className="w-10 h-10 rounded-none bg-card border border-border text-muted-foreground flex items-center justify-center hover:text-primary transition-all cursor-pointer shadow-xl">
-                                        <Mail size={18} />
-                                    </div>
+                                    {member.linkedin && (
+                                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-none bg-primary text-white flex items-center justify-center hover:bg-foreground hover:text-background transition-all cursor-pointer shadow-xl">
+                                            <Linkedin size={18} />
+                                        </a>
+                                    )}
+                                    {member.twitter && (
+                                        <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-none bg-card border border-border text-muted-foreground flex items-center justify-center hover:text-primary transition-all cursor-pointer shadow-xl">
+                                            <Twitter size={18} />
+                                        </a>
+                                    )}
+                                    {member.email && (
+                                        <a href={`mailto:${member.email}`} className="w-10 h-10 rounded-none bg-card border border-border text-muted-foreground flex items-center justify-center hover:text-primary transition-all cursor-pointer shadow-xl">
+                                            <Mail size={18} />
+                                        </a>
+                                    )}
                                 </div>
 
                                 <div className="absolute bottom-0 left-0 right-0 p-10 transform transition-transform duration-700 group-hover:-translate-y-2">
                                     <div className="space-y-1 mb-4">
                                         <h3 className="text-2xl font-bold text-foreground tracking-tight leading-none uppercase">{member.name}</h3>
-                                        <p className="text-primary font-bold text-[9px] uppercase tracking-[0.3em] leading-none">{member.role}</p>
+                                        <p className="text-primary font-bold text-[9px] uppercase tracking-[0.3em] leading-none">{member.position}</p>
                                     </div>
                                     <p className="text-sm text-muted-foreground leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 font-medium">
                                         {member.bio}

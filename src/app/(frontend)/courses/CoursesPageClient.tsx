@@ -15,12 +15,11 @@ export default function CoursesPageClient({ initialCourses }: { initialCourses: 
 
   const mappedCourses: LocalCourse[] = useMemo(() => {
     return initialCourses.map((course) => {
-      let imageUrl = ''
-      if (typeof course.image === 'string') {
-        imageUrl = course.image
-      } else if (course.image && (course.image as Media).url) {
-        imageUrl = (course.image as Media).url!
-      }
+      const imageUrl = !course.image
+        ? ''
+        : typeof course.image === 'string'
+          ? ''
+          : (course.image as Media).url || ''
 
       const category = (course.category as string) || 'Development'
       const features = (course as any).features?.map((f: any) => f.feature) || []
@@ -104,7 +103,7 @@ export default function CoursesPageClient({ initialCourses }: { initialCourses: 
               className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-primary/10 border border-primary/20 text-primary text-[10px] md:text-xs font-black uppercase tracking-[0.2em]"
             >
               <GraduationCap size={16} className="animate-pulse" />
-              Elite Knowledge Repository
+            Our Programs
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -112,7 +111,7 @@ export default function CoursesPageClient({ initialCourses }: { initialCourses: 
               transition={{ delay: 0.1 }}
               className="text-5xl md:text-7xl lg:text-8xl font-black text-foreground leading-none tracking-tighter"
             >
-              Architect Your <span className="text-primary">Career</span>
+              Start Your <span className="text-primary">Journey</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -126,10 +125,10 @@ export default function CoursesPageClient({ initialCourses }: { initialCourses: 
 
           {/* Search Component */}
           <div className="relative max-w-2xl mx-auto px-4 group">
-            <Search className="absolute left-10 md:left-10 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={20} />
+            <Search className="absolute left-10 md:left-10 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors z-10 pointer-events-none" size={20} />
             <input
               type="text"
-              placeholder="Initialize Program Search..."
+              placeholder="Search for courses..."
               className="w-full h-16 md:h-20 pl-16 md:pl-20 pr-8 rounded-none border border-border focus:border-primary/50 focus:ring-4 focus:ring-primary/5 transition-all outline-none bg-card/50 backdrop-blur-xl text-foreground placeholder:text-muted-foreground/50 text-base md:text-lg font-medium shadow-2xl shadow-primary/5"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -139,11 +138,11 @@ export default function CoursesPageClient({ initialCourses }: { initialCourses: 
       </section>
 
       {/* Courses Discovery Section */}
-      <section className="py-24 md:py-32">
-        <div className="container-custom">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+      <section className="py-12 md:py-16">
+        <div className="container-custom max-w-[1600px]">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Sidebar Filters - Sticky */}
-            <aside className="lg:w-80 space-y-12 lg:space-y-16 lg:sticky lg:top-32 h-fit shrink-0">
+            <aside className="lg:w-[280px] space-y-8 lg:space-y-12 lg:sticky lg:top-32 h-fit shrink-0">
               {/* Category Filter */}
               <div className="space-y-8">
                 <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground flex items-center gap-3">
@@ -195,25 +194,25 @@ export default function CoursesPageClient({ initialCourses }: { initialCourses: 
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-none blur-3xl group-hover:scale-150 transition-transform duration-1000" />
                 <h4 className="text-2xl font-black text-foreground tracking-tighter uppercase relative z-10 leading-none mb-3">Professional Guidance</h4>
                 <p className="text-sm text-muted-foreground font-medium relative z-10 leading-relaxed mb-8 opacity-80">
-                  Book a direct synchronization session with our architects to find your optimal path.
+                  Book a direct session with our experts to find best course for you.
                 </p>
                 <button
                   onClick={() => window.location.href = '/book-consultation'}
                   className="w-full py-5 rounded-none bg-primary text-white font-black uppercase tracking-[0.2em] text-[10px] relative z-10 hover:bg-foreground transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group/btn"
                 >
-                  Initialize Protocol
+                  Book Session
                   <PhoneCall size={14} className="group-hover/btn:rotate-12 transition-transform" />
                 </button>
               </div>
             </aside>
 
             {/* Courses Grid */}
-            <div className="flex-1 space-y-12">
+            <div className="flex-1 space-y-8">
               <div className="flex items-center justify-between bg-muted/40 p-6 rounded-none border border-border">
                 <div className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-muted-foreground">
-                  Protocol Result:{' '}
+                  Showing:{' '}
                   <span className="text-foreground">{filteredCourses.length}</span>{' '}
-                  Active Programs
+                  Active Courses
                 </div>
                 <div className="flex items-center gap-4">
                   <ArrowUpDown size={14} className="text-primary" />
@@ -239,8 +238,8 @@ export default function CoursesPageClient({ initialCourses }: { initialCourses: 
                     <BookOpen size={48} />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-3xl font-black text-foreground tracking-tighter">Zero Correlation Found</h3>
-                    <p className="text-muted-foreground text-lg">Modify your filters or re-initialize the search protocol.</p>
+                    <h3 className="text-3xl font-black text-foreground tracking-tighter">No Courses Found</h3>
+                    <p className="text-muted-foreground text-lg">Modify your filters or adjust your search.</p>
                   </div>
                   <button
                     onClick={() => { setActiveCategory('All'); setActiveLevel('All'); setSearchQuery(''); }}

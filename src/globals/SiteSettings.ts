@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { adminOnly } from '../access'
 
 export const SiteSettings: GlobalConfig = {
     slug: 'site-settings',
@@ -7,7 +8,7 @@ export const SiteSettings: GlobalConfig = {
     },
     access: {
         read: () => true,
-        update: ({ req: { user } }) => !!user,
+        update: adminOnly,
     },
     fields: [
         {
@@ -20,7 +21,7 @@ export const SiteSettings: GlobalConfig = {
                             name: 'siteName',
                             type: 'text',
                             required: true,
-                            defaultValue: 'Training Point',
+                            defaultValue: 'Tecobit',
                         },
                         {
                             name: 'description',
