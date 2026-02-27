@@ -21,7 +21,7 @@ export const SiteSettings: GlobalConfig = {
                             name: 'siteName',
                             type: 'text',
                             required: true,
-                            defaultValue: 'Training Point',
+                            defaultValue: 'Tecobit',
                         },
                         {
                             name: 'description',
