@@ -54,11 +54,11 @@ export default async function NewsEventsPage() {
 
 
                 <h1 className="text-4xl md:text-7xl font-black text-foreground mb-6 tracking-tighter relative z-10">
-                    News & <span className="text-primary">Broadcasts</span>
+                    News & <span className="text-primary">Events</span>
                 </h1>
 
                 <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed relative z-10 font-medium">
-                    Establish synchronization with our latest happenings, technical workshops, and community evolution.
+                    Get to know our latest happenings, technical workshops, and community evolution.
                 </p>
             </div>
 
@@ -105,7 +105,7 @@ export default async function NewsEventsPage() {
 
                                 <div className="pt-8 border-t border-border">
                                     <Link href={`/news-events/${item.id}`} className="inline-flex items-center gap-4 text-primary font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-foreground transition-all duration-300">
-                                        Execute Read Protocol <ArrowRight className="group-hover:translate-x-3 transition-transform h-4 w-4" />
+                                        Read More <ArrowRight className="group-hover:translate-x-3 transition-transform h-4 w-4" />
                                     </Link>
                                 </div>
                             </div>
@@ -114,41 +114,7 @@ export default async function NewsEventsPage() {
                 </div>
 
                 {/* Newsletter Section */}
-                <div className="mt-32 p-16 md:p-24 rounded-none bg-muted/30 border border-border relative overflow-hidden text-center space-y-12">
-                    {/* Floating Decoration */}
-                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-none blur-3xl animate-pulse" />
-                    <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/5 rounded-none blur-3xl animate-pulse delay-1000" />
-
-                    <div className="space-y-4 max-w-2xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.2em]">
-                            <Bell size={14} className="animate-bounce" />
-                            Transmission Alerts
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-black text-foreground tracking-tighter uppercase leading-none">
-                            Synchronize your <span className="text-primary">Inbox</span>.
-                        </h2>
-                        <p className="text-muted-foreground text-lg font-medium opacity-80">
-                            Initialize a subscription to receive future broadcasts and system updates.
-                        </p>
-                    </div>
-
-                    <div className="max-w-xl mx-auto">
-                        <form className="flex flex-col sm:flex-row gap-4 p-2 bg-card border border-border rounded-none shadow-2xl focus-within:border-primary/50 transition-all">
-                            <input
-                                type="email"
-                                required
-                                placeholder="name@tecobit.cloud"
-                                className="bg-transparent px-8 py-4 outline-none text-foreground flex-1 placeholder:text-muted-foreground/50 font-medium"
-                            />
-                            <button type="submit" className="bg-primary hover:bg-foreground text-white font-black uppercase tracking-[0.2em] px-10 py-5 rounded-none transition-all shadow-xl shadow-primary/20 text-[11px] group">
-                                <span className="flex items-center justify-center gap-2">
-                                    Initialize
-                                    <Sparkles size={16} className="group-hover:rotate-12 transition-transform" />
-                                </span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                {/*in future - suscribing to company email */}
             </div>
         </main>
     )
