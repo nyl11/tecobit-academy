@@ -1,67 +1,121 @@
-# Payload Blank Template
+# Tecobit Academy
 
-This template comes configured with the bare minimum to get started on anything you need.
+Tecobit Academy is a modern web application built with **Next.js 15** and **Payload CMS 3.0**. This repository contains the frontend application and the integrated headless CMS, connected to a MongoDB database.
 
-## Quick start
+## 🚀 Tech Stack
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **CMS:** [Payload 3.0](https://payloadcms.com/)
+- **Database:** MongoDB
+- **Styling:** Tailwind CSS & Radix UI Primitives
+- **Language:** TypeScript
+- **Package Manager:** `pnpm`
 
-## Quick Start - local setup
+## 🛠️ Prerequisites
 
-To spin up this template locally, follow these steps:
+Before you begin, ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v18.20.2+ or v20.9.0+)
+- [pnpm](https://pnpm.io/) (v9 or v10)
+- [MongoDB](https://www.mongodb.com/) (Local instance or MongoDB Atlas)
+- [Docker](https://www.docker.com/) & Docker Compose (Optional, for containerized environments)
 
-### Clone
+## 💻 Local Development Setup
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+Follow these steps to run the project locally on your machine:
 
-### Development
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd tecobit-academy
+   ```
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URL` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+2. **Set up environment variables:**
+   Copy the example environment file and update it with your own values.
+   ```bash
+   cp .env.example .env
+   ```
+   *Make sure to provide a valid `DATABASE_URL` (e.g., `mongodb://127.0.0.1/tecobit-academy`) and a secure `PAYLOAD_SECRET`.*
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+3. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+4. **Start the development server:**
+   ```bash
+   pnpm run dev
+   ```
+   
+   The application will be available at:
+   - Frontend: `http://localhost:3000`
+   - Payload Admin Panel: `http://localhost:3000/admin`
 
-#### Docker (Optional)
+---
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+## 🐳 Docker Setup (Local)
 
-To do so, follow these steps:
+If you prefer using Docker to avoid installing MongoDB locally, you can use the provided `docker-compose.yml`.
 
-- Modify the `MONGODB_URL` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URL` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+1. Make sure your `.env` file has the `DATABASE_URL` pointing to the mongo container:
+   ```env
+   DATABASE_URL=mongodb://mongo/tecobit-academy
+   ```
+2. Start the services:
+   ```bash
+   docker-compose up -d
+   ```
+   *This will start both MongoDB and the Next.js/Payload dev server on port 3000.*
 
-## How it works
+---
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+## 🚢 Deployment Guide
 
-### Collections
+This project is configured for standalone output, making it easy to deploy on VPS hosting, AWS, Vercel, or anywhere Docker is supported.
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+### Option 1: Standard Node.js Deployment (VPS / Bare Metal)
 
-- #### Users (Authentication)
+1. **Clone the repository** on your production server.
+2. **Set up the `.env` file** with your production MongoDB URI and Payload Secret.
+3. **Install dependencies:**
+   ```bash
+   pnpm install --frozen-lockfile
+   ```
+4. **Build the project:**
+   ```bash
+   pnpm run build
+   ```
+5. **Start the production server:**
+   ```bash
+   pnpm start
+   ```
+   *Alternatively, use a process manager like PM2 to keep the app running: `pm2 start pnpm --name "tecobit-academy" -- start`*
 
-  Users are auth-enabled collections that have access to the admin panel.
+### Option 2: Docker Deployment (Recommended)
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+The project includes a multi-stage `Dockerfile` optimized for production, leveraging Next.js Standalone mode to drastically reduce image sizes.
 
-- #### Media
+1. **Build the Docker Image:**
+   ```bash
+   docker build -t tecobit-academy:latest .
+   ```
+2. **Run the Container:**
+   ```bash
+   docker run -p 3000:3000 \
+     -e DATABASE_URL="mongodb://<your-production-db-url>" \
+     -e PAYLOAD_SECRET="<your-secure-secret>" \
+     tecobit-academy:latest
+   ```
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+*(You can also set up a production `docker-compose.yml` that includes your production MongoDB and a reverse proxy like Nginx or Traefik).*
 
-### Docker
+## 🧪 Testing
+We use Playwright for E2E testing and Vitest for integration testing.
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+```bash
+# Run all tests
+pnpm run test
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+# Run specific testing suites
+pnpm run test:e2e
+pnpm run test:int
+```
